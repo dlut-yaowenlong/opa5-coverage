@@ -1,0 +1,751 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Code coverage report for fe/core/helpers/StableIdHelper.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../../favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+    
+<body>
+<div class='wrapper'>
+    <div class='pad1'>
+        <h1><a href="../../../index.html">All files</a> / <a href="index.html">fe/core/helpers</a> StableIdHelper.js</h1>
+        <div class='clearfix'>
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">18.26% </span>
+                <span class="quiet">Statements</span>
+                <span class='fraction'>19/104</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>0/72</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">5.88% </span>
+                <span class="quiet">Functions</span>
+                <span class='fraction'>1/17</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">19.19% </span>
+                <span class="quiet">Lines</span>
+                <span class='fraction'>19/99</span>
+            </div>
+        
+            
+        </div>
+        <p class="quiet">
+            Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
+        </p>
+        <template id="filterTemplate">
+            <div class="quiet">
+                Filter:
+                <input type="search" id="fileSearch">
+            </div>
+        </template>
+    </div>
+    <div class='status-line low'></div>
+    <pre><table class="coverage">
+<tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
+<a name='L2'></a><a href='#L2'>2</a>
+<a name='L3'></a><a href='#L3'>3</a>
+<a name='L4'></a><a href='#L4'>4</a>
+<a name='L5'></a><a href='#L5'>5</a>
+<a name='L6'></a><a href='#L6'>6</a>
+<a name='L7'></a><a href='#L7'>7</a>
+<a name='L8'></a><a href='#L8'>8</a>
+<a name='L9'></a><a href='#L9'>9</a>
+<a name='L10'></a><a href='#L10'>10</a>
+<a name='L11'></a><a href='#L11'>11</a>
+<a name='L12'></a><a href='#L12'>12</a>
+<a name='L13'></a><a href='#L13'>13</a>
+<a name='L14'></a><a href='#L14'>14</a>
+<a name='L15'></a><a href='#L15'>15</a>
+<a name='L16'></a><a href='#L16'>16</a>
+<a name='L17'></a><a href='#L17'>17</a>
+<a name='L18'></a><a href='#L18'>18</a>
+<a name='L19'></a><a href='#L19'>19</a>
+<a name='L20'></a><a href='#L20'>20</a>
+<a name='L21'></a><a href='#L21'>21</a>
+<a name='L22'></a><a href='#L22'>22</a>
+<a name='L23'></a><a href='#L23'>23</a>
+<a name='L24'></a><a href='#L24'>24</a>
+<a name='L25'></a><a href='#L25'>25</a>
+<a name='L26'></a><a href='#L26'>26</a>
+<a name='L27'></a><a href='#L27'>27</a>
+<a name='L28'></a><a href='#L28'>28</a>
+<a name='L29'></a><a href='#L29'>29</a>
+<a name='L30'></a><a href='#L30'>30</a>
+<a name='L31'></a><a href='#L31'>31</a>
+<a name='L32'></a><a href='#L32'>32</a>
+<a name='L33'></a><a href='#L33'>33</a>
+<a name='L34'></a><a href='#L34'>34</a>
+<a name='L35'></a><a href='#L35'>35</a>
+<a name='L36'></a><a href='#L36'>36</a>
+<a name='L37'></a><a href='#L37'>37</a>
+<a name='L38'></a><a href='#L38'>38</a>
+<a name='L39'></a><a href='#L39'>39</a>
+<a name='L40'></a><a href='#L40'>40</a>
+<a name='L41'></a><a href='#L41'>41</a>
+<a name='L42'></a><a href='#L42'>42</a>
+<a name='L43'></a><a href='#L43'>43</a>
+<a name='L44'></a><a href='#L44'>44</a>
+<a name='L45'></a><a href='#L45'>45</a>
+<a name='L46'></a><a href='#L46'>46</a>
+<a name='L47'></a><a href='#L47'>47</a>
+<a name='L48'></a><a href='#L48'>48</a>
+<a name='L49'></a><a href='#L49'>49</a>
+<a name='L50'></a><a href='#L50'>50</a>
+<a name='L51'></a><a href='#L51'>51</a>
+<a name='L52'></a><a href='#L52'>52</a>
+<a name='L53'></a><a href='#L53'>53</a>
+<a name='L54'></a><a href='#L54'>54</a>
+<a name='L55'></a><a href='#L55'>55</a>
+<a name='L56'></a><a href='#L56'>56</a>
+<a name='L57'></a><a href='#L57'>57</a>
+<a name='L58'></a><a href='#L58'>58</a>
+<a name='L59'></a><a href='#L59'>59</a>
+<a name='L60'></a><a href='#L60'>60</a>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a>
+<a name='L66'></a><a href='#L66'>66</a>
+<a name='L67'></a><a href='#L67'>67</a>
+<a name='L68'></a><a href='#L68'>68</a>
+<a name='L69'></a><a href='#L69'>69</a>
+<a name='L70'></a><a href='#L70'>70</a>
+<a name='L71'></a><a href='#L71'>71</a>
+<a name='L72'></a><a href='#L72'>72</a>
+<a name='L73'></a><a href='#L73'>73</a>
+<a name='L74'></a><a href='#L74'>74</a>
+<a name='L75'></a><a href='#L75'>75</a>
+<a name='L76'></a><a href='#L76'>76</a>
+<a name='L77'></a><a href='#L77'>77</a>
+<a name='L78'></a><a href='#L78'>78</a>
+<a name='L79'></a><a href='#L79'>79</a>
+<a name='L80'></a><a href='#L80'>80</a>
+<a name='L81'></a><a href='#L81'>81</a>
+<a name='L82'></a><a href='#L82'>82</a>
+<a name='L83'></a><a href='#L83'>83</a>
+<a name='L84'></a><a href='#L84'>84</a>
+<a name='L85'></a><a href='#L85'>85</a>
+<a name='L86'></a><a href='#L86'>86</a>
+<a name='L87'></a><a href='#L87'>87</a>
+<a name='L88'></a><a href='#L88'>88</a>
+<a name='L89'></a><a href='#L89'>89</a>
+<a name='L90'></a><a href='#L90'>90</a>
+<a name='L91'></a><a href='#L91'>91</a>
+<a name='L92'></a><a href='#L92'>92</a>
+<a name='L93'></a><a href='#L93'>93</a>
+<a name='L94'></a><a href='#L94'>94</a>
+<a name='L95'></a><a href='#L95'>95</a>
+<a name='L96'></a><a href='#L96'>96</a>
+<a name='L97'></a><a href='#L97'>97</a>
+<a name='L98'></a><a href='#L98'>98</a>
+<a name='L99'></a><a href='#L99'>99</a>
+<a name='L100'></a><a href='#L100'>100</a>
+<a name='L101'></a><a href='#L101'>101</a>
+<a name='L102'></a><a href='#L102'>102</a>
+<a name='L103'></a><a href='#L103'>103</a>
+<a name='L104'></a><a href='#L104'>104</a>
+<a name='L105'></a><a href='#L105'>105</a>
+<a name='L106'></a><a href='#L106'>106</a>
+<a name='L107'></a><a href='#L107'>107</a>
+<a name='L108'></a><a href='#L108'>108</a>
+<a name='L109'></a><a href='#L109'>109</a>
+<a name='L110'></a><a href='#L110'>110</a>
+<a name='L111'></a><a href='#L111'>111</a>
+<a name='L112'></a><a href='#L112'>112</a>
+<a name='L113'></a><a href='#L113'>113</a>
+<a name='L114'></a><a href='#L114'>114</a>
+<a name='L115'></a><a href='#L115'>115</a>
+<a name='L116'></a><a href='#L116'>116</a>
+<a name='L117'></a><a href='#L117'>117</a>
+<a name='L118'></a><a href='#L118'>118</a>
+<a name='L119'></a><a href='#L119'>119</a>
+<a name='L120'></a><a href='#L120'>120</a>
+<a name='L121'></a><a href='#L121'>121</a>
+<a name='L122'></a><a href='#L122'>122</a>
+<a name='L123'></a><a href='#L123'>123</a>
+<a name='L124'></a><a href='#L124'>124</a>
+<a name='L125'></a><a href='#L125'>125</a>
+<a name='L126'></a><a href='#L126'>126</a>
+<a name='L127'></a><a href='#L127'>127</a>
+<a name='L128'></a><a href='#L128'>128</a>
+<a name='L129'></a><a href='#L129'>129</a>
+<a name='L130'></a><a href='#L130'>130</a>
+<a name='L131'></a><a href='#L131'>131</a>
+<a name='L132'></a><a href='#L132'>132</a>
+<a name='L133'></a><a href='#L133'>133</a>
+<a name='L134'></a><a href='#L134'>134</a>
+<a name='L135'></a><a href='#L135'>135</a>
+<a name='L136'></a><a href='#L136'>136</a>
+<a name='L137'></a><a href='#L137'>137</a>
+<a name='L138'></a><a href='#L138'>138</a>
+<a name='L139'></a><a href='#L139'>139</a>
+<a name='L140'></a><a href='#L140'>140</a>
+<a name='L141'></a><a href='#L141'>141</a>
+<a name='L142'></a><a href='#L142'>142</a>
+<a name='L143'></a><a href='#L143'>143</a>
+<a name='L144'></a><a href='#L144'>144</a>
+<a name='L145'></a><a href='#L145'>145</a>
+<a name='L146'></a><a href='#L146'>146</a>
+<a name='L147'></a><a href='#L147'>147</a>
+<a name='L148'></a><a href='#L148'>148</a>
+<a name='L149'></a><a href='#L149'>149</a>
+<a name='L150'></a><a href='#L150'>150</a>
+<a name='L151'></a><a href='#L151'>151</a>
+<a name='L152'></a><a href='#L152'>152</a>
+<a name='L153'></a><a href='#L153'>153</a>
+<a name='L154'></a><a href='#L154'>154</a>
+<a name='L155'></a><a href='#L155'>155</a>
+<a name='L156'></a><a href='#L156'>156</a>
+<a name='L157'></a><a href='#L157'>157</a>
+<a name='L158'></a><a href='#L158'>158</a>
+<a name='L159'></a><a href='#L159'>159</a>
+<a name='L160'></a><a href='#L160'>160</a>
+<a name='L161'></a><a href='#L161'>161</a>
+<a name='L162'></a><a href='#L162'>162</a>
+<a name='L163'></a><a href='#L163'>163</a>
+<a name='L164'></a><a href='#L164'>164</a>
+<a name='L165'></a><a href='#L165'>165</a>
+<a name='L166'></a><a href='#L166'>166</a>
+<a name='L167'></a><a href='#L167'>167</a>
+<a name='L168'></a><a href='#L168'>168</a>
+<a name='L169'></a><a href='#L169'>169</a>
+<a name='L170'></a><a href='#L170'>170</a>
+<a name='L171'></a><a href='#L171'>171</a>
+<a name='L172'></a><a href='#L172'>172</a>
+<a name='L173'></a><a href='#L173'>173</a>
+<a name='L174'></a><a href='#L174'>174</a>
+<a name='L175'></a><a href='#L175'>175</a>
+<a name='L176'></a><a href='#L176'>176</a>
+<a name='L177'></a><a href='#L177'>177</a>
+<a name='L178'></a><a href='#L178'>178</a>
+<a name='L179'></a><a href='#L179'>179</a>
+<a name='L180'></a><a href='#L180'>180</a>
+<a name='L181'></a><a href='#L181'>181</a>
+<a name='L182'></a><a href='#L182'>182</a>
+<a name='L183'></a><a href='#L183'>183</a>
+<a name='L184'></a><a href='#L184'>184</a>
+<a name='L185'></a><a href='#L185'>185</a>
+<a name='L186'></a><a href='#L186'>186</a>
+<a name='L187'></a><a href='#L187'>187</a>
+<a name='L188'></a><a href='#L188'>188</a>
+<a name='L189'></a><a href='#L189'>189</a>
+<a name='L190'></a><a href='#L190'>190</a>
+<a name='L191'></a><a href='#L191'>191</a>
+<a name='L192'></a><a href='#L192'>192</a>
+<a name='L193'></a><a href='#L193'>193</a>
+<a name='L194'></a><a href='#L194'>194</a>
+<a name='L195'></a><a href='#L195'>195</a>
+<a name='L196'></a><a href='#L196'>196</a>
+<a name='L197'></a><a href='#L197'>197</a>
+<a name='L198'></a><a href='#L198'>198</a>
+<a name='L199'></a><a href='#L199'>199</a>
+<a name='L200'></a><a href='#L200'>200</a>
+<a name='L201'></a><a href='#L201'>201</a>
+<a name='L202'></a><a href='#L202'>202</a>
+<a name='L203'></a><a href='#L203'>203</a>
+<a name='L204'></a><a href='#L204'>204</a>
+<a name='L205'></a><a href='#L205'>205</a>
+<a name='L206'></a><a href='#L206'>206</a>
+<a name='L207'></a><a href='#L207'>207</a>
+<a name='L208'></a><a href='#L208'>208</a>
+<a name='L209'></a><a href='#L209'>209</a>
+<a name='L210'></a><a href='#L210'>210</a>
+<a name='L211'></a><a href='#L211'>211</a>
+<a name='L212'></a><a href='#L212'>212</a>
+<a name='L213'></a><a href='#L213'>213</a>
+<a name='L214'></a><a href='#L214'>214</a>
+<a name='L215'></a><a href='#L215'>215</a>
+<a name='L216'></a><a href='#L216'>216</a>
+<a name='L217'></a><a href='#L217'>217</a>
+<a name='L218'></a><a href='#L218'>218</a>
+<a name='L219'></a><a href='#L219'>219</a>
+<a name='L220'></a><a href='#L220'>220</a>
+<a name='L221'></a><a href='#L221'>221</a>
+<a name='L222'></a><a href='#L222'>222</a>
+<a name='L223'></a><a href='#L223'>223</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/*!
+ * SAP UI development toolkit for HTML5 (SAPUI5)
+ *      (c) Copyright 2009-2025 SAP SE. All rights reserved
+ */
+sap.ui.define(["sap/fe/core/helpers/TypeGuards"], function (TypeGuards) {
+  "use strict";
+&nbsp;
+  var _exports = {};
+  var isPathAnnotationExpression = TypeGuards.isPathAnnotationExpression;
+  /**
+   * Generates the ID from an IBN.
+   *
+   * The ID contains the value, the potential action and context.
+   * @param dataField The IBN annotation
+   * @returns The ID
+   */
+  const _getStableIdPartFromIBN = <span class="fstat-no" title="function not covered" >da</span>taField =&gt; {
+    const idParts = <span class="cstat-no" title="statement not covered" >[isPathAnnotationExpression(dataField.SemanticObject) ? dataField.SemanticObject.path : dataField.SemanticObject.valueOf(), dataField.Action?.valueOf()];</span>
+<span class="cstat-no" title="statement not covered" >    if (dataField.RequiresContext) {</span>
+<span class="cstat-no" title="statement not covered" >      idParts.push("RequiresContext");</span>
+    }
+<span class="cstat-no" title="statement not covered" >    return idParts.filter(<span class="fstat-no" title="function not covered" >id</span> =&gt; <span class="cstat-no" title="statement not covered" >id)</span>.join("::");</span>
+  };
+&nbsp;
+  /**
+   * Generates the ID part related to the value of the DataField.
+   * @param dataField The DataField
+   * @returns String related to the DataField value
+   */
+  const _getStableIdPartFromValue = <span class="fstat-no" title="function not covered" >da</span>taField =&gt; {
+    const value = <span class="cstat-no" title="statement not covered" >dataField.Value;</span>
+<span class="cstat-no" title="statement not covered" >    if (value.path) {</span>
+<span class="cstat-no" title="statement not covered" >      return value.path;</span>
+    } else <span class="cstat-no" title="statement not covered" >if (value.$Apply &amp;&amp; value.$Function === "odata.concat") {</span>
+<span class="cstat-no" title="statement not covered" >      return value.$Apply.map(<span class="fstat-no" title="function not covered" >ap</span>p =&gt; <span class="cstat-no" title="statement not covered" >app.$Path)</span>.join("::");</span>
+    }
+<span class="cstat-no" title="statement not covered" >    return replaceSpecialChars(value.replace(/ /g, "_"));</span>
+  };
+&nbsp;
+  /**
+   * Generates the ID part related to the value or url of the DataFieldWithUrl.
+   * @param dataField The DataFieldWithUrl
+   * @returns String related to the DataFieldWithUrl value or url
+   */
+  const _getStableIdPartFromUrlOrPath = <span class="fstat-no" title="function not covered" >da</span>taField =&gt; {
+    const value = <span class="cstat-no" title="statement not covered" >dataField.Value;</span>
+<span class="cstat-no" title="statement not covered" >    if (value?.path) {</span>
+<span class="cstat-no" title="statement not covered" >      return value.path;</span>
+    } else <span class="cstat-no" title="statement not covered" >if (value?.$Apply &amp;&amp; value.$Function === "odata.concat") {</span>
+<span class="cstat-no" title="statement not covered" >      return value.$Apply.map(<span class="fstat-no" title="function not covered" >ap</span>p =&gt; <span class="cstat-no" title="statement not covered" >app.$Path)</span>.join("::");</span>
+    }
+    const url = <span class="cstat-no" title="statement not covered" >dataField.Url;</span>
+<span class="cstat-no" title="statement not covered" >    if (isPathAnnotationExpression(url) &amp;&amp; url?.path) {</span>
+<span class="cstat-no" title="statement not covered" >      return url.path;</span>
+    } else <span class="cstat-no" title="statement not covered" >if (url?.$Apply &amp;&amp; url.$Function === "odata.concat") {</span>
+<span class="cstat-no" title="statement not covered" >      return url.$Apply.map(<span class="fstat-no" title="function not covered" >ap</span>p =&gt; <span class="cstat-no" title="statement not covered" >app.$Path)</span>.join("::");</span>
+    }
+<span class="cstat-no" title="statement not covered" >    return replaceSpecialChars(value?.replace(/ /g, "_"));</span>
+  };
+&nbsp;
+  /**
+   * Copy for the Core.isValid function to be independent.
+   * @param value String to validate
+   * @returns Whether the value is valid or not
+   */
+  const _isValid = <span class="fstat-no" title="function not covered" >va</span>lue =&gt; {
+<span class="cstat-no" title="statement not covered" >    return /^([A-Za-z_][-A-Za-z0-9_.:]*)$/.test(value);</span>
+  };
+&nbsp;
+  /**
+   * Removes the annotation namespaces.
+   * @param id String to manipulate
+   * @returns String without the annotation namespaces
+   */
+  const _removeNamespaces = <span class="fstat-no" title="function not covered" >id</span> =&gt; {
+<span class="cstat-no" title="statement not covered" >    id = id.replace("com.sap.vocabularies.UI.v1.", "");</span>
+<span class="cstat-no" title="statement not covered" >    id = id.replace("com.sap.vocabularies.Communication.v1.", "");</span>
+<span class="cstat-no" title="statement not covered" >    return id;</span>
+  };
+&nbsp;
+  /**
+   * Generates the ID from an annotation.
+   * @param annotation The annotation
+   * @param idPreparation Determines whether the ID needs to be prepared for final usage
+   * @returns The ID
+   */
+  const createIdForAnnotation = <span class="fstat-no" title="function not covered" >fu</span>nction (annotation) {
+    let idPreparation = <span class="cstat-no" title="statement not covered" >arguments.length &gt; 1 &amp;&amp; arguments[1] !== undefined ? arguments[1] : true;</span>
+    let id;
+<span class="cstat-no" title="statement not covered" >    switch (annotation.$Type) {</span>
+      case "com.sap.vocabularies.UI.v1.ReferenceFacet":
+<span class="cstat-no" title="statement not covered" >        id = annotation.ID ?? annotation.Target.value;</span>
+<span class="cstat-no" title="statement not covered" >        break;</span>
+      case "com.sap.vocabularies.UI.v1.CollectionFacet":
+<span class="cstat-no" title="statement not covered" >        id = annotation.ID ?? "undefined"; </span>// CollectionFacet without Id is not supported but doesn't necessary fail right now
+<span class="cstat-no" title="statement not covered" >        break;</span>
+      case "com.sap.vocabularies.UI.v1.FieldGroupType":
+<span class="cstat-no" title="statement not covered" >        id = annotation.Label;</span>
+<span class="cstat-no" title="statement not covered" >        break;</span>
+      default:
+<span class="cstat-no" title="statement not covered" >        id = getStableIdPartFromDataField(annotation);</span>
+<span class="cstat-no" title="statement not covered" >        break;</span>
+    }
+<span class="cstat-no" title="statement not covered" >    id = id?.toString();</span>
+<span class="cstat-no" title="statement not covered" >    return id &amp;&amp; idPreparation ? prepareId(id) : id;</span>
+  };
+&nbsp;
+  /**
+   * Generates a stable ID based on the given parameters.
+   *
+   * Parameters are combined in the same order in which they are provided and are separated by '::'.
+   * Generate(['Stable', 'Id']) would result in 'Stable::Id' as the stable ID.
+   * Currently supported annotations are Facets, FieldGroup and all kinds of DataField.
+   * @param stableIdParts Array of strings, undefined, dataModelObjectPath or annotations
+   * @returns Stable ID constructed from the provided parameters
+   */
+  _exports.createIdForAnnotation = createIdForAnnotation;
+  const generate = <span class="fstat-no" title="function not covered" >st</span>ableIdParts =&gt; {
+    const ids = <span class="cstat-no" title="statement not covered" >stableIdParts.map(<span class="fstat-no" title="function not covered" >el</span>ement =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      if (typeof element === "string" || !element) {</span>
+<span class="cstat-no" title="statement not covered" >        return element;</span>
+      }
+<span class="cstat-no" title="statement not covered" >      return createIdForAnnotation(element.targetObject || element, false);</span>
+    });
+    const result = <span class="cstat-no" title="statement not covered" >ids.filter(<span class="fstat-no" title="function not covered" >id</span> =&gt; <span class="cstat-no" title="statement not covered" >id)</span>.join("::");</span>
+<span class="cstat-no" title="statement not covered" >    return prepareId(result);</span>
+  };
+&nbsp;
+  /**
+   * Generates the ID from a DataField.
+   * @param dataField The DataField
+   * @param ignoreForCompatibility Ignore a part of the ID on the DataFieldWithNavigationPath to be aligned with previous versions
+   * @returns The ID
+   */
+  _exports.generate = generate;
+  const getStableIdPartFromDataField = <span class="fstat-no" title="function not covered" >fu</span>nction (dataField) {
+    let ignoreForCompatibility = <span class="cstat-no" title="statement not covered" >arguments.length &gt; 1 &amp;&amp; arguments[1] !== undefined ? arguments[1] : false;</span>
+    let id = <span class="cstat-no" title="statement not covered" >"";</span>
+<span class="cstat-no" title="statement not covered" >    switch (dataField.$Type) {</span>
+      case "com.sap.vocabularies.UI.v1.DataFieldForAction":
+<span class="cstat-no" title="statement not covered" >        id = `DataFieldForAction::${dataField.Action}`;</span>
+<span class="cstat-no" title="statement not covered" >        break;</span>
+      case "com.sap.vocabularies.UI.v1.DataFieldForActionGroup":
+        // DataFieldForActionGroup comes with ID property unlike other DataField types
+<span class="cstat-no" title="statement not covered" >        id = `DataFieldForActionGroup::${dataField.ID}`;</span>
+<span class="cstat-no" title="statement not covered" >        break;</span>
+      case "com.sap.vocabularies.UI.v1.DataFieldForIntentBasedNavigation":
+<span class="cstat-no" title="statement not covered" >        id = `DataFieldForIntentBasedNavigation::${_getStableIdPartFromIBN(dataField)}`;</span>
+<span class="cstat-no" title="statement not covered" >        break;</span>
+      case "com.sap.vocabularies.UI.v1.DataFieldForAnnotation":
+<span class="cstat-no" title="statement not covered" >        id = `DataFieldForAnnotation::${dataField.Target.value}`;</span>
+<span class="cstat-no" title="statement not covered" >        break;</span>
+      case "com.sap.vocabularies.UI.v1.DataFieldWithAction":
+<span class="cstat-no" title="statement not covered" >        id = `DataFieldWithAction::${_getStableIdPartFromValue(dataField)}::${dataField.Action}`;</span>
+<span class="cstat-no" title="statement not covered" >        break;</span>
+      case "com.sap.vocabularies.UI.v1.DataField":
+<span class="cstat-no" title="statement not covered" >        id = `DataField::${_getStableIdPartFromValue(dataField)}`;</span>
+<span class="cstat-no" title="statement not covered" >        break;</span>
+      case "com.sap.vocabularies.UI.v1.DataFieldWithIntentBasedNavigation":
+<span class="cstat-no" title="statement not covered" >        id = `DataFieldWithIntentBasedNavigation::${_getStableIdPartFromValue(dataField)}::${_getStableIdPartFromIBN(dataField)}`;</span>
+<span class="cstat-no" title="statement not covered" >        break;</span>
+      case "com.sap.vocabularies.UI.v1.DataFieldWithNavigationPath":
+<span class="cstat-no" title="statement not covered" >        id = `DataFieldWithNavigationPath::${_getStableIdPartFromValue(dataField)}`;</span>
+<span class="cstat-no" title="statement not covered" >        if (dataField.Target.type === "NavigationPropertyPath" &amp;&amp; !ignoreForCompatibility) {</span>
+<span class="cstat-no" title="statement not covered" >          id = `${id}::${dataField.Target.value}`;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        break;</span>
+      case "com.sap.vocabularies.UI.v1.DataFieldWithUrl":
+<span class="cstat-no" title="statement not covered" >        id = `DataFieldWithUrl::${_getStableIdPartFromUrlOrPath(dataField)}`;</span>
+<span class="cstat-no" title="statement not covered" >        break;</span>
+      default:
+<span class="cstat-no" title="statement not covered" >        break;</span>
+    }
+<span class="cstat-no" title="statement not covered" >    return id ? prepareId(id) : undefined;</span>
+  };
+&nbsp;
+  /**
+   * Removes or replaces with "::" some special characters.
+   * Special characters (@, /, #) are replaced by '::' if they are in the middle of the stable ID and removed altogether if they are at the beginning or end.
+   * @param id String to manipulate
+   * @returns String without the special characters
+   */
+  _exports.getStableIdPartFromDataField = getStableIdPartFromDataField;
+  const replaceSpecialChars = <span class="fstat-no" title="function not covered" >id</span> =&gt; {
+<span class="cstat-no" title="statement not covered" >    if (id.includes(" ")) {</span>
+<span class="cstat-no" title="statement not covered" >      throw Error(`${id} - Spaces are not allowed in ID parts.`);</span>
+    }
+<span class="cstat-no" title="statement not covered" >    id = id.replace(/^\/|^@|^#|^\*/, "") // remove special characters from the beginning of the string</span>
+    .replace(/\/$|@$|#$|\*$/, "") // remove special characters from the end of the string
+    .replace(/[/|@()#]/g, "::"); // replace special characters with ::
+&nbsp;
+    // Replace double occurrences of the separator with a single separator
+<span class="cstat-no" title="statement not covered" >    while (id.includes("::::")) {</span>
+<span class="cstat-no" title="statement not covered" >      id = id.replace("::::", "::");</span>
+    }
+&nbsp;
+    // If there is a :: at the end of the ID remove it
+<span class="cstat-no" title="statement not covered" >    if (id.slice(-2) == "::") {</span>
+<span class="cstat-no" title="statement not covered" >      id = id.slice(0, -2);</span>
+    }
+<span class="cstat-no" title="statement not covered" >    return id;</span>
+  };
+&nbsp;
+  /**
+   * Prepares the ID.
+   *
+   * Removes namespaces and special characters and checks the validity of this ID.
+   * @param id The ID
+   * @returns The ID or throws an error
+   */
+  _exports.replaceSpecialChars = replaceSpecialChars;
+  const prepareId = <span class="fstat-no" title="function not covered" >fu</span>nction (id) {
+<span class="cstat-no" title="statement not covered" >    id = replaceSpecialChars(_removeNamespaces(id));</span>
+<span class="cstat-no" title="statement not covered" >    if (_isValid(id)) {</span>
+<span class="cstat-no" title="statement not covered" >      return id;</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      throw Error(`${id} - Stable Id could not be generated due to insufficient information.`);</span>
+    }
+  };
+  _exports.prepareId = prepareId;
+  return _exports;
+}, false);
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6WyJfZ2V0U3RhYmxlSWRQYXJ0RnJvbUlCTiIsImRhdGFGaWVsZCIsImlkUGFydHMiLCJpc1BhdGhBbm5vdGF0aW9uRXhwcmVzc2lvbiIsIlNlbWFudGljT2JqZWN0IiwicGF0aCIsInZhbHVlT2YiLCJBY3Rpb24iLCJSZXF1aXJlc0NvbnRleHQiLCJwdXNoIiwiZmlsdGVyIiwiaWQiLCJqb2luIiwiX2dldFN0YWJsZUlkUGFydEZyb21WYWx1ZSIsInZhbHVlIiwiVmFsdWUiLCIkQXBwbHkiLCIkRnVuY3Rpb24iLCJtYXAiLCJhcHAiLCIkUGF0aCIsInJlcGxhY2VTcGVjaWFsQ2hhcnMiLCJyZXBsYWNlIiwiX2dldFN0YWJsZUlkUGFydEZyb21VcmxPclBhdGgiLCJ1cmwiLCJVcmwiLCJfaXNWYWxpZCIsInRlc3QiLCJfcmVtb3ZlTmFtZXNwYWNlcyIsImNyZWF0ZUlkRm9yQW5ub3RhdGlvbiIsImFubm90YXRpb24iLCJpZFByZXBhcmF0aW9uIiwiYXJndW1lbnRzIiwibGVuZ3RoIiwidW5kZWZpbmVkIiwiJFR5cGUiLCJJRCIsIlRhcmdldCIsIkxhYmVsIiwiZ2V0U3RhYmxlSWRQYXJ0RnJvbURhdGFGaWVsZCIsInRvU3RyaW5nIiwicHJlcGFyZUlkIiwiX2V4cG9ydHMiLCJnZW5lcmF0ZSIsInN0YWJsZUlkUGFydHMiLCJpZHMiLCJlbGVtZW50IiwidGFyZ2V0T2JqZWN0IiwicmVzdWx0IiwiaWdub3JlRm9yQ29tcGF0aWJpbGl0eSIsInR5cGUiLCJpbmNsdWRlcyIsIkVycm9yIiwic2xpY2UiXSwic291cmNlUm9vdCI6Ii4iLCJzb3VyY2VzIjpbIlN0YWJsZUlkSGVscGVyLnRzIl0sInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB0eXBlIHsgUHJvcGVydHlBbm5vdGF0aW9uVmFsdWUgfSBmcm9tIFwiQHNhcC11eC92b2NhYnVsYXJpZXMtdHlwZXNcIjtcbmltcG9ydCB7IHR5cGUgQXBwbHlBbm5vdGF0aW9uRXhwcmVzc2lvbiB9IGZyb20gXCJAc2FwLXV4L3ZvY2FidWxhcmllcy10eXBlc1wiO1xuaW1wb3J0IHR5cGUge1xuXHREYXRhRmllbGQsXG5cdERhdGFGaWVsZEFic3RyYWN0VHlwZXMsXG5cdERhdGFGaWVsZEZvckludGVudEJhc2VkTmF2aWdhdGlvbixcblx0RGF0YUZpZWxkV2l0aEFjdGlvbixcblx0RGF0YUZpZWxkV2l0aEludGVudEJhc2VkTmF2aWdhdGlvbixcblx0RGF0YUZpZWxkV2l0aE5hdmlnYXRpb25QYXRoLFxuXHREYXRhRmllbGRXaXRoVXJsLFxuXHRGYWNldFR5cGVzLFxuXHRGaWVsZEdyb3VwXG59IGZyb20gXCJAc2FwLXV4L3ZvY2FidWxhcmllcy10eXBlcy92b2NhYnVsYXJpZXMvVUlcIjtcbmltcG9ydCB7IFVJQW5ub3RhdGlvblR5cGVzIH0gZnJvbSBcIkBzYXAtdXgvdm9jYWJ1bGFyaWVzLXR5cGVzL3ZvY2FidWxhcmllcy9VSVwiO1xuaW1wb3J0IHsgaXNQYXRoQW5ub3RhdGlvbkV4cHJlc3Npb24gfSBmcm9tIFwic2FwL2ZlL2NvcmUvaGVscGVycy9UeXBlR3VhcmRzXCI7XG5pbXBvcnQgdHlwZSB7IERhdGFNb2RlbE9iamVjdFBhdGggfSBmcm9tIFwiLi4vdGVtcGxhdGluZy9EYXRhTW9kZWxQYXRoSGVscGVyXCI7XG5cbmV4cG9ydCB0eXBlIEF1dGhvcml6ZWRJZEFubm90YXRpb25zVHlwZSA9IEZhY2V0VHlwZXMgfCBGaWVsZEdyb3VwIHwgRGF0YUZpZWxkQWJzdHJhY3RUeXBlcztcblxuLyoqXG4gKiBHZW5lcmF0ZXMgdGhlIElEIGZyb20gYW4gSUJOLlxuICpcbiAqIFRoZSBJRCBjb250YWlucyB0aGUgdmFsdWUsIHRoZSBwb3RlbnRpYWwgYWN0aW9uIGFuZCBjb250ZXh0LlxuICogQHBhcmFtIGRhdGFGaWVsZCBUaGUgSUJOIGFubm90YXRpb25cbiAqIEByZXR1cm5zIFRoZSBJRFxuICovXG5jb25zdCBfZ2V0U3RhYmxlSWRQYXJ0RnJvbUlCTiA9IChkYXRhRmllbGQ6IERhdGFGaWVsZEZvckludGVudEJhc2VkTmF2aWdhdGlvbiB8IERhdGFGaWVsZFdpdGhJbnRlbnRCYXNlZE5hdmlnYXRpb24pOiBzdHJpbmcgPT4ge1xuXHRjb25zdCBpZFBhcnRzID0gW1xuXHRcdGlzUGF0aEFubm90YXRpb25FeHByZXNzaW9uKGRhdGFGaWVsZC5TZW1hbnRpY09iamVjdCkgPyBkYXRhRmllbGQuU2VtYW50aWNPYmplY3QucGF0aCA6IGRhdGFGaWVsZC5TZW1hbnRpY09iamVjdC52YWx1ZU9mKCksXG5cdFx0ZGF0YUZpZWxkLkFjdGlvbj8udmFsdWVPZigpXG5cdF07XG5cdGlmICgoZGF0YUZpZWxkIGFzIERhdGFGaWVsZEZvckludGVudEJhc2VkTmF2aWdhdGlvbikuUmVxdWlyZXNDb250ZXh0KSB7XG5cdFx0aWRQYXJ0cy5wdXNoKFwiUmVxdWlyZXNDb250ZXh0XCIpO1xuXHR9XG5cdHJldHVybiBpZFBhcnRzLmZpbHRlcigoaWQpID0+IGlkKS5qb2luKFwiOjpcIik7XG59O1xuXG4vKipcbiAqIEdlbmVyYXRlcyB0aGUgSUQgcGFydCByZWxhdGVkIHRvIHRoZSB2YWx1ZSBvZiB0aGUgRGF0YUZpZWxkLlxuICogQHBhcmFtIGRhdGFGaWVsZCBUaGUgRGF0YUZpZWxkXG4gKiBAcmV0dXJucyBTdHJpbmcgcmVsYXRlZCB0byB0aGUgRGF0YUZpZWxkIHZhbHVlXG4gKi9cbmNvbnN0IF9nZXRTdGFibGVJZFBhcnRGcm9tVmFsdWUgPSAoXG5cdGRhdGFGaWVsZDogRGF0YUZpZWxkIHwgRGF0YUZpZWxkV2l0aEFjdGlvbiB8IERhdGFGaWVsZFdpdGhJbnRlbnRCYXNlZE5hdmlnYXRpb24gfCBEYXRhRmllbGRXaXRoVXJsIHwgRGF0YUZpZWxkV2l0aE5hdmlnYXRpb25QYXRoXG4pOiBzdHJpbmcgPT4ge1xuXHRjb25zdCB2YWx1ZSA9IGRhdGFGaWVsZC5WYWx1ZTtcblx0aWYgKHZhbHVlLnBhdGgpIHtcblx0XHRyZXR1cm4gdmFsdWUucGF0aCBhcyBzdHJpbmc7XG5cdH0gZWxzZSBpZiAodmFsdWUuJEFwcGx5ICYmIHZhbHVlLiRGdW5jdGlvbiA9PT0gXCJvZGF0YS5jb25jYXRcIikge1xuXHRcdHJldHVybiB2YWx1ZS4kQXBwbHkubWFwKChhcHA6IHsgJFBhdGg/OiBzdHJpbmcgfSkgPT4gYXBwLiRQYXRoKS5qb2luKFwiOjpcIik7XG5cdH1cblx0cmV0dXJuIHJlcGxhY2VTcGVjaWFsQ2hhcnModmFsdWUucmVwbGFjZSgvIC9nLCBcIl9cIikpO1xufTtcblxuLyoqXG4gKiBHZW5lcmF0ZXMgdGhlIElEIHBhcnQgcmVsYXRlZCB0byB0aGUgdmFsdWUgb3IgdXJsIG9mIHRoZSBEYXRhRmllbGRXaXRoVXJsLlxuICogQHBhcmFtIGRhdGFGaWVsZCBUaGUgRGF0YUZpZWxkV2l0aFVybFxuICogQHJldHVybnMgU3RyaW5nIHJlbGF0ZWQgdG8gdGhlIERhdGFGaWVsZFdpdGhVcmwgdmFsdWUgb3IgdXJsXG4gKi9cbmNvbnN0IF9nZXRTdGFibGVJZFBhcnRGcm9tVXJsT3JQYXRoID0gKGRhdGFGaWVsZDogRGF0YUZpZWxkV2l0aFVybCk6IHN0cmluZyA9PiB7XG5cdGNvbnN0IHZhbHVlID0gZGF0YUZpZWxkLlZhbHVlO1xuXHRpZiAodmFsdWU/LnBhdGgpIHtcblx0XHRyZXR1cm4gdmFsdWUucGF0aCBhcyBzdHJpbmc7XG5cdH0gZWxzZSBpZiAodmFsdWU/LiRBcHBseSAmJiB2YWx1ZS4kRnVuY3Rpb24gPT09IFwib2RhdGEuY29uY2F0XCIpIHtcblx0XHRyZXR1cm4gdmFsdWUuJEFwcGx5Lm1hcCgoYXBwOiB7ICRQYXRoPzogc3RyaW5nIH0pID0+IGFwcC4kUGF0aCkuam9pbihcIjo6XCIpO1xuXHR9XG5cdGNvbnN0IHVybCA9IGRhdGFGaWVsZC5VcmwgYXMgdW5rbm93biBhcyBQcm9wZXJ0eUFubm90YXRpb25WYWx1ZTxTdHJpbmc+O1xuXHRpZiAoaXNQYXRoQW5ub3RhdGlvbkV4cHJlc3Npb24odXJsKSAmJiB1cmw/LnBhdGgpIHtcblx0XHRyZXR1cm4gdXJsLnBhdGg7XG5cdH0gZWxzZSBpZiAoXG5cdFx0KHVybCBhcyBBcHBseUFubm90YXRpb25FeHByZXNzaW9uPFN0cmluZz4pPy4kQXBwbHkgJiZcblx0XHQodXJsIGFzIEFwcGx5QW5ub3RhdGlvbkV4cHJlc3Npb248U3RyaW5nPikuJEZ1bmN0aW9uID09PSBcIm9kYXRhLmNvbmNhdFwiXG5cdCkge1xuXHRcdHJldHVybiAodXJsIGFzIHsgJEFwcGx5OiB7ICRQYXRoPzogc3RyaW5nIH1bXSB9KS4kQXBwbHkubWFwKChhcHApID0+IGFwcC4kUGF0aCkuam9pbihcIjo6XCIpO1xuXHR9XG5cdHJldHVybiByZXBsYWNlU3BlY2lhbENoYXJzKHZhbHVlPy5yZXBsYWNlKC8gL2csIFwiX1wiKSk7XG59O1xuXG4vKipcbiAqIENvcHkgZm9yIHRoZSBDb3JlLmlzVmFsaWQgZnVuY3Rpb24gdG8gYmUgaW5kZXBlbmRlbnQuXG4gKiBAcGFyYW0gdmFsdWUgU3RyaW5nIHRvIHZhbGlkYXRlXG4gKiBAcmV0dXJucyBXaGV0aGVyIHRoZSB2YWx1ZSBpcyB2YWxpZCBvciBub3RcbiAqL1xuY29uc3QgX2lzVmFsaWQgPSAodmFsdWU6IHN0cmluZyk6IGJvb2xlYW4gPT4ge1xuXHRyZXR1cm4gL14oW0EtWmEtel9dWy1BLVphLXowLTlfLjpdKikkLy50ZXN0KHZhbHVlKTtcbn07XG5cbi8qKlxuICogUmVtb3ZlcyB0aGUgYW5ub3RhdGlvbiBuYW1lc3BhY2VzLlxuICogQHBhcmFtIGlkIFN0cmluZyB0byBtYW5pcHVsYXRlXG4gKiBAcmV0dXJucyBTdHJpbmcgd2l0aG91dCB0aGUgYW5ub3RhdGlvbiBuYW1lc3BhY2VzXG4gKi9cbmNvbnN0IF9yZW1vdmVOYW1lc3BhY2VzID0gKGlkOiBzdHJpbmcpOiBzdHJpbmcgPT4ge1xuXHRpZCA9IGlkLnJlcGxhY2UoXCJjb20uc2FwLnZvY2FidWxhcmllcy5VSS52MS5cIiwgXCJcIik7XG5cdGlkID0gaWQucmVwbGFjZShcImNvbS5zYXAudm9jYWJ1bGFyaWVzLkNvbW11bmljYXRpb24udjEuXCIsIFwiXCIpO1xuXHRyZXR1cm4gaWQ7XG59O1xuXG4vKipcbiAqIEdlbmVyYXRlcyB0aGUgSUQgZnJvbSBhbiBhbm5vdGF0aW9uLlxuICogQHBhcmFtIGFubm90YXRpb24gVGhlIGFubm90YXRpb25cbiAqIEBwYXJhbSBpZFByZXBhcmF0aW9uIERldGVybWluZXMgd2hldGhlciB0aGUgSUQgbmVlZHMgdG8gYmUgcHJlcGFyZWQgZm9yIGZpbmFsIHVzYWdlXG4gKiBAcmV0dXJucyBUaGUgSURcbiAqL1xuZXhwb3J0IGNvbnN0IGNyZWF0ZUlkRm9yQW5ub3RhdGlvbiA9IChhbm5vdGF0aW9uOiBBdXRob3JpemVkSWRBbm5vdGF0aW9uc1R5cGUsIGlkUHJlcGFyYXRpb24gPSB0cnVlKTogc3RyaW5nIHwgdW5kZWZpbmVkID0+IHtcblx0bGV0IGlkO1xuXHRzd2l0Y2ggKGFubm90YXRpb24uJFR5cGUpIHtcblx0XHRjYXNlIFVJQW5ub3RhdGlvblR5cGVzLlJlZmVyZW5jZUZhY2V0OlxuXHRcdFx0aWQgPSBhbm5vdGF0aW9uLklEID8/IGFubm90YXRpb24uVGFyZ2V0LnZhbHVlO1xuXHRcdFx0YnJlYWs7XG5cdFx0Y2FzZSBVSUFubm90YXRpb25UeXBlcy5Db2xsZWN0aW9uRmFjZXQ6XG5cdFx0XHRpZCA9IGFubm90YXRpb24uSUQgPz8gXCJ1bmRlZmluZWRcIjsgLy8gQ29sbGVjdGlvbkZhY2V0IHdpdGhvdXQgSWQgaXMgbm90IHN1cHBvcnRlZCBidXQgZG9lc24ndCBuZWNlc3NhcnkgZmFpbCByaWdodCBub3dcblx0XHRcdGJyZWFrO1xuXHRcdGNhc2UgVUlBbm5vdGF0aW9uVHlwZXMuRmllbGRHcm91cFR5cGU6XG5cdFx0XHRpZCA9IGFubm90YXRpb24uTGFiZWw7XG5cdFx0XHRicmVhaztcblx0XHRkZWZhdWx0OlxuXHRcdFx0aWQgPSBnZXRTdGFibGVJZFBhcnRGcm9tRGF0YUZpZWxkKGFubm90YXRpb24gYXMgRGF0YUZpZWxkQWJzdHJhY3RUeXBlcyk7XG5cdFx0XHRicmVhaztcblx0fVxuXHRpZCA9IGlkPy50b1N0cmluZygpO1xuXHRyZXR1cm4gaWQgJiYgaWRQcmVwYXJhdGlvbiA/IHByZXBhcmVJZChpZCkgOiBpZDtcbn07XG5cbi8qKlxuICogR2VuZXJhdGVzIGEgc3RhYmxlIElEIGJhc2VkIG9uIHRoZSBnaXZlbiBwYXJhbWV0ZXJzLlxuICpcbiAqIFBhcmFtZXRlcnMgYXJlIGNvbWJpbmVkIGluIHRoZSBzYW1lIG9yZGVyIGluIHdoaWNoIHRoZXkgYXJlIHByb3ZpZGVkIGFuZCBhcmUgc2VwYXJhdGVkIGJ5ICc6OicuXG4gKiBHZW5lcmF0ZShbJ1N0YWJsZScsICdJZCddKSB3b3VsZCByZXN1bHQgaW4gJ1N0YWJsZTo6SWQnIGFzIHRoZSBzdGFibGUgSUQuXG4gKiBDdXJyZW50bHkgc3VwcG9ydGVkIGFubm90YXRpb25zIGFyZSBGYWNldHMsIEZpZWxkR3JvdXAgYW5kIGFsbCBraW5kcyBvZiBEYXRhRmllbGQuXG4gKiBAcGFyYW0gc3RhYmxlSWRQYXJ0cyBBcnJheSBvZiBzdHJpbmdzLCB1bmRlZmluZWQsIGRhdGFNb2RlbE9iamVjdFBhdGggb3IgYW5ub3RhdGlvbnNcbiAqIEByZXR1cm5zIFN0YWJsZSBJRCBjb25zdHJ1Y3RlZCBmcm9tIHRoZSBwcm92aWRlZCBwYXJhbWV0ZXJzXG4gKi9cbmV4cG9ydCBjb25zdCBnZW5lcmF0ZSA9IChcblx0c3RhYmxlSWRQYXJ0czogQXJyYXk8c3RyaW5nIHwgdW5kZWZpbmVkIHwgRGF0YU1vZGVsT2JqZWN0UGF0aDxBdXRob3JpemVkSWRBbm5vdGF0aW9uc1R5cGU+IHwgQXV0aG9yaXplZElkQW5ub3RhdGlvbnNUeXBlPlxuKTogc3RyaW5nID0+IHtcblx0Y29uc3QgaWRzOiAoc3RyaW5nIHwgdW5kZWZpbmVkKVtdID0gc3RhYmxlSWRQYXJ0cy5tYXAoKGVsZW1lbnQpID0+IHtcblx0XHRpZiAodHlwZW9mIGVsZW1lbnQgPT09IFwic3RyaW5nXCIgfHwgIWVsZW1lbnQpIHtcblx0XHRcdHJldHVybiBlbGVtZW50O1xuXHRcdH1cblx0XHRyZXR1cm4gY3JlYXRlSWRGb3JBbm5vdGF0aW9uKFxuXHRcdFx0KGVsZW1lbnQgYXMgRGF0YU1vZGVsT2JqZWN0UGF0aDxBdXRob3JpemVkSWRBbm5vdGF0aW9uc1R5cGU+KS50YXJnZXRPYmplY3QgfHwgKGVsZW1lbnQgYXMgQXV0aG9yaXplZElkQW5ub3RhdGlvbnNUeXBlKSxcblx0XHRcdGZhbHNlXG5cdFx0KTtcblx0fSk7XG5cdGNvbnN0IHJlc3VsdCA9IGlkcy5maWx0ZXIoKGlkKSA9PiBpZCkuam9pbihcIjo6XCIpO1xuXHRyZXR1cm4gcHJlcGFyZUlkKHJlc3VsdCk7XG59O1xuXG4vKipcbiAqIEdlbmVyYXRlcyB0aGUgSUQgZnJvbSBhIERhdGFGaWVsZC5cbiAqIEBwYXJhbSBkYXRhRmllbGQgVGhlIERhdGFGaWVsZFxuICogQHBhcmFtIGlnbm9yZUZvckNvbXBhdGliaWxpdHkgSWdub3JlIGEgcGFydCBvZiB0aGUgSUQgb24gdGhlIERhdGFGaWVsZFdpdGhOYXZpZ2F0aW9uUGF0aCB0byBiZSBhbGlnbmVkIHdpdGggcHJldmlvdXMgdmVyc2lvbnNcbiAqIEByZXR1cm5zIFRoZSBJRFxuICovXG5leHBvcnQgY29uc3QgZ2V0U3RhYmxlSWRQYXJ0RnJvbURhdGFGaWVsZCA9IChkYXRhRmllbGQ6IERhdGFGaWVsZEFic3RyYWN0VHlwZXMsIGlnbm9yZUZvckNvbXBhdGliaWxpdHkgPSBmYWxzZSk6IHN0cmluZyB8IHVuZGVmaW5lZCA9PiB7XG5cdGxldCBpZCA9IFwiXCI7XG5cdHN3aXRjaCAoZGF0YUZpZWxkLiRUeXBlKSB7XG5cdFx0Y2FzZSBVSUFubm90YXRpb25UeXBlcy5EYXRhRmllbGRGb3JBY3Rpb246XG5cdFx0XHRpZCA9IGBEYXRhRmllbGRGb3JBY3Rpb246OiR7ZGF0YUZpZWxkLkFjdGlvbn1gO1xuXHRcdFx0YnJlYWs7XG5cdFx0Y2FzZSBVSUFubm90YXRpb25UeXBlcy5EYXRhRmllbGRGb3JBY3Rpb25Hcm91cDpcblx0XHRcdC8vIERhdGFGaWVsZEZvckFjdGlvbkdyb3VwIGNvbWVzIHdpdGggSUQgcHJvcGVydHkgdW5saWtlIG90aGVyIERhdGFGaWVsZCB0eXBlc1xuXHRcdFx0aWQgPSBgRGF0YUZpZWxkRm9yQWN0aW9uR3JvdXA6OiR7ZGF0YUZpZWxkLklEfWA7XG5cdFx0XHRicmVhaztcblx0XHRjYXNlIFVJQW5ub3RhdGlvblR5cGVzLkRhdGFGaWVsZEZvckludGVudEJhc2VkTmF2aWdhdGlvbjpcblx0XHRcdGlkID0gYERhdGFGaWVsZEZvckludGVudEJhc2VkTmF2aWdhdGlvbjo6JHtfZ2V0U3RhYmxlSWRQYXJ0RnJvbUlCTihkYXRhRmllbGQpfWA7XG5cdFx0XHRicmVhaztcblx0XHRjYXNlIFVJQW5ub3RhdGlvblR5cGVzLkRhdGFGaWVsZEZvckFubm90YXRpb246XG5cdFx0XHRpZCA9IGBEYXRhRmllbGRGb3JBbm5vdGF0aW9uOjoke2RhdGFGaWVsZC5UYXJnZXQudmFsdWV9YDtcblx0XHRcdGJyZWFrO1xuXHRcdGNhc2UgVUlBbm5vdGF0aW9uVHlwZXMuRGF0YUZpZWxkV2l0aEFjdGlvbjpcblx0XHRcdGlkID0gYERhdGFGaWVsZFdpdGhBY3Rpb246OiR7X2dldFN0YWJsZUlkUGFydEZyb21WYWx1ZShkYXRhRmllbGQpfTo6JHtkYXRhRmllbGQuQWN0aW9ufWA7XG5cdFx0XHRicmVhaztcblx0XHRjYXNlIFVJQW5ub3RhdGlvblR5cGVzLkRhdGFGaWVsZDpcblx0XHRcdGlkID0gYERhdGFGaWVsZDo6JHtfZ2V0U3RhYmxlSWRQYXJ0RnJvbVZhbHVlKGRhdGFGaWVsZCl9YDtcblx0XHRcdGJyZWFrO1xuXHRcdGNhc2UgVUlBbm5vdGF0aW9uVHlwZXMuRGF0YUZpZWxkV2l0aEludGVudEJhc2VkTmF2aWdhdGlvbjpcblx0XHRcdGlkID0gYERhdGFGaWVsZFdpdGhJbnRlbnRCYXNlZE5hdmlnYXRpb246OiR7X2dldFN0YWJsZUlkUGFydEZyb21WYWx1ZShkYXRhRmllbGQpfTo6JHtfZ2V0U3RhYmxlSWRQYXJ0RnJvbUlCTihkYXRhRmllbGQpfWA7XG5cdFx0XHRicmVhaztcblx0XHRjYXNlIFVJQW5ub3RhdGlvblR5cGVzLkRhdGFGaWVsZFdpdGhOYXZpZ2F0aW9uUGF0aDpcblx0XHRcdGlkID0gYERhdGFGaWVsZFdpdGhOYXZpZ2F0aW9uUGF0aDo6JHtfZ2V0U3RhYmxlSWRQYXJ0RnJvbVZhbHVlKGRhdGFGaWVsZCl9YDtcblx0XHRcdGlmIChkYXRhRmllbGQuVGFyZ2V0LnR5cGUgPT09IFwiTmF2aWdhdGlvblByb3BlcnR5UGF0aFwiICYmICFpZ25vcmVGb3JDb21wYXRpYmlsaXR5KSB7XG5cdFx0XHRcdGlkID0gYCR7aWR9Ojoke2RhdGFGaWVsZC5UYXJnZXQudmFsdWV9YDtcblx0XHRcdH1cblx0XHRcdGJyZWFrO1xuXHRcdGNhc2UgVUlBbm5vdGF0aW9uVHlwZXMuRGF0YUZpZWxkV2l0aFVybDpcblx0XHRcdGlkID0gYERhdGFGaWVsZFdpdGhVcmw6OiR7X2dldFN0YWJsZUlkUGFydEZyb21VcmxPclBhdGgoZGF0YUZpZWxkKX1gO1xuXHRcdFx0YnJlYWs7XG5cdFx0ZGVmYXVsdDpcblx0XHRcdGJyZWFrO1xuXHR9XG5cdHJldHVybiBpZCA/IHByZXBhcmVJZChpZCkgOiB1bmRlZmluZWQ7XG59O1xuXG4vKipcbiAqIFJlbW92ZXMgb3IgcmVwbGFjZXMgd2l0aCBcIjo6XCIgc29tZSBzcGVjaWFsIGNoYXJhY3RlcnMuXG4gKiBTcGVjaWFsIGNoYXJhY3RlcnMgKEAsIC8sICMpIGFyZSByZXBsYWNlZCBieSAnOjonIGlmIHRoZXkgYXJlIGluIHRoZSBtaWRkbGUgb2YgdGhlIHN0YWJsZSBJRCBhbmQgcmVtb3ZlZCBhbHRvZ2V0aGVyIGlmIHRoZXkgYXJlIGF0IHRoZSBiZWdpbm5pbmcgb3IgZW5kLlxuICogQHBhcmFtIGlkIFN0cmluZyB0byBtYW5pcHVsYXRlXG4gKiBAcmV0dXJucyBTdHJpbmcgd2l0aG91dCB0aGUgc3BlY2lhbCBjaGFyYWN0ZXJzXG4gKi9cbmV4cG9ydCBjb25zdCByZXBsYWNlU3BlY2lhbENoYXJzID0gKGlkOiBzdHJpbmcpOiBzdHJpbmcgPT4ge1xuXHRpZiAoaWQuaW5jbHVkZXMoXCIgXCIpKSB7XG5cdFx0dGhyb3cgRXJyb3IoYCR7aWR9IC0gU3BhY2VzIGFyZSBub3QgYWxsb3dlZCBpbiBJRCBwYXJ0cy5gKTtcblx0fVxuXHRpZCA9IGlkXG5cdFx0LnJlcGxhY2UoL15cXC98XkB8XiN8XlxcKi8sIFwiXCIpIC8vIHJlbW92ZSBzcGVjaWFsIGNoYXJhY3RlcnMgZnJvbSB0aGUgYmVnaW5uaW5nIG9mIHRoZSBzdHJpbmdcblx0XHQucmVwbGFjZSgvXFwvJHxAJHwjJHxcXCokLywgXCJcIikgLy8gcmVtb3ZlIHNwZWNpYWwgY2hhcmFjdGVycyBmcm9tIHRoZSBlbmQgb2YgdGhlIHN0cmluZ1xuXHRcdC5yZXBsYWNlKC9bL3xAKCkjXS9nLCBcIjo6XCIpOyAvLyByZXBsYWNlIHNwZWNpYWwgY2hhcmFjdGVycyB3aXRoIDo6XG5cblx0Ly8gUmVwbGFjZSBkb3VibGUgb2NjdXJyZW5jZXMgb2YgdGhlIHNlcGFyYXRvciB3aXRoIGEgc2luZ2xlIHNlcGFyYXRvclxuXHR3aGlsZSAoaWQuaW5jbHVkZXMoXCI6Ojo6XCIpKSB7XG5cdFx0aWQgPSBpZC5yZXBsYWNlKFwiOjo6OlwiLCBcIjo6XCIpO1xuXHR9XG5cblx0Ly8gSWYgdGhlcmUgaXMgYSA6OiBhdCB0aGUgZW5kIG9mIHRoZSBJRCByZW1vdmUgaXRcblx0aWYgKGlkLnNsaWNlKC0yKSA9PSBcIjo6XCIpIHtcblx0XHRpZCA9IGlkLnNsaWNlKDAsIC0yKTtcblx0fVxuXG5cdHJldHVybiBpZDtcbn07XG5cbi8qKlxuICogUHJlcGFyZXMgdGhlIElELlxuICpcbiAqIFJlbW92ZXMgbmFtZXNwYWNlcyBhbmQgc3BlY2lhbCBjaGFyYWN0ZXJzIGFuZCBjaGVja3MgdGhlIHZhbGlkaXR5IG9mIHRoaXMgSUQuXG4gKiBAcGFyYW0gaWQgVGhlIElEXG4gKiBAcmV0dXJucyBUaGUgSUQgb3IgdGhyb3dzIGFuIGVycm9yXG4gKi9cbmV4cG9ydCBjb25zdCBwcmVwYXJlSWQgPSBmdW5jdGlvbiAoaWQ6IHN0cmluZyk6IHN0cmluZyB7XG5cdGlkID0gcmVwbGFjZVNwZWNpYWxDaGFycyhfcmVtb3ZlTmFtZXNwYWNlcyhpZCkpO1xuXHRpZiAoX2lzVmFsaWQoaWQpKSB7XG5cdFx0cmV0dXJuIGlkO1xuXHR9IGVsc2Uge1xuXHRcdHRocm93IEVycm9yKGAke2lkfSAtIFN0YWJsZSBJZCBjb3VsZCBub3QgYmUgZ2VuZXJhdGVkIGR1ZSB0byBpbnN1ZmZpY2llbnQgaW5mb3JtYXRpb24uYCk7XG5cdH1cbn07XG4iXSwibWFwcGluZ3MiOiI7Ozs7Ozs7OztFQW1CQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtFQUNBLE1BQU1BLHVCQUF1QixHQUFJQyxTQUFpRixJQUFhO0lBQzlILE1BQU1DLE9BQU8sR0FBRyxDQUNmQywwQkFBMEIsQ0FBQ0YsU0FBUyxDQUFDRyxjQUFjLENBQUMsR0FBR0gsU0FBUyxDQUFDRyxjQUFjLENBQUNDLElBQUksR0FBR0osU0FBUyxDQUFDRyxjQUFjLENBQUNFLE9BQU8sQ0FBQyxDQUFDLEVBQ3pITCxTQUFTLENBQUNNLE1BQU0sRUFBRUQsT0FBTyxDQUFDLENBQUMsQ0FDM0I7SUFDRCxJQUFLTCxTQUFTLENBQXVDTyxlQUFlLEVBQUU7TUFDckVOLE9BQU8sQ0FBQ08sSUFBSSxDQUFDLGlCQUFpQixDQUFDO0lBQ2hDO0lBQ0EsT0FBT1AsT0FBTyxDQUFDUSxNQUFNLENBQUVDLEVBQUUsSUFBS0EsRUFBRSxDQUFDLENBQUNDLElBQUksQ0FBQyxJQUFJLENBQUM7RUFDN0MsQ0FBQzs7RUFFRDtBQUNBO0FBQ0E7QUFDQTtBQUNBO0VBQ0EsTUFBTUMseUJBQXlCLEdBQzlCWixTQUFnSSxJQUNwSDtJQUNaLE1BQU1hLEtBQUssR0FBR2IsU0FBUyxDQUFDYyxLQUFLO0lBQzdCLElBQUlELEtBQUssQ0FBQ1QsSUFBSSxFQUFFO01BQ2YsT0FBT1MsS0FBSyxDQUFDVCxJQUFJO0lBQ2xCLENBQUMsTUFBTSxJQUFJUyxLQUFLLENBQUNFLE1BQU0sSUFBSUYsS0FBSyxDQUFDRyxTQUFTLEtBQUssY0FBYyxFQUFFO01BQzlELE9BQU9ILEtBQUssQ0FBQ0UsTUFB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</pre></td></tr></table></pre>
+
+                <div class='push'></div><!-- for sticky footer -->
+            </div><!-- /wrapper -->
+            <div class='footer quiet pad2 space-top1 center small'>
+                Code coverage generated by
+                <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
+                at 2026-03-19T07:27:23.597Z
+            </div>
+        <script src="../../../prettify.js"></script>
+        <script>
+            window.onload = function () {
+                prettyPrint();
+            };
+        </script>
+        <script src="../../../sorter.js"></script>
+        <script src="../../../block-navigation.js"></script>
+    </body>
+</html>
+    

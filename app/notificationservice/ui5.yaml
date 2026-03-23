@@ -1,0 +1,60 @@
+# yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
+
+specVersion: "4.0"
+metadata:
+  name: notificationservice
+
+  allowSapInternal: true
+type: application
+framework:
+  name: SAPUI5
+  version: "1.143.2"
+  libraries:
+    - name: sap.ui.core
+    - name: sap.m
+    - name: sap.ui.comp
+    - name: sap.ui.table
+    - name: sap.fe.core
+    - name: sap.fe.templates
+    - name: sap.fe.test 
+    - name: sap.ushell
+server:
+  customMiddleware:
+    - name: fiori-tools-proxy
+      afterMiddleware: compression
+      configuration:
+        backend:
+          - path: /odata/v4
+            url: http://localhost:4004
+    - name: "@ui5/middleware-code-coverage"
+      afterMiddleware: compression
+      configuration:
+        cwd: "./webapp"
+        pathMappings:
+          /resources/notificationservice/: webapp/
+        onlyServeCoverage: true
+        report:
+          reporter:
+            - html
+            - lcov
+          report-dir: "./tmp/coverage-reports"
+        instrument:
+          produceSourceMap: true
+          coverageGlobalScope: "window.top"
+          coverageGlobalScopeFunc: false
+        include:
+          - "**/*.js"
+          - "controller/**/*.js"
+          - "Component.js"
+          - "model/**/*.js"
+        exclude:
+          - "resources/**"
+          - "test/**"
+          - "node_modules/**"
+          - "localService/**"
+    - name: fiori-tools-appreload
+      afterMiddleware: compression
+      configuration:
+        port: 35729
+        path: webapp
+        delay: 300

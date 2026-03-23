@@ -1,0 +1,191 @@
+_schema-version: 3.3.0
+ID: notification-service
+description: A simple CAP project.
+version: 1.0.0-SNAPSHOT
+modules:
+- name: notification-service-srv
+  type: java
+  path: srv
+  properties:
+    JBP_CONFIG_COMPONENTS: 'jres: ["com.sap.xs.java.buildpack.jre.SAPMachineJRE"]'
+    JBP_CONFIG_SAP_MACHINE_JRE: '{ version: 21.+ }'
+    SPRING_PROFILES_ACTIVE: cloud,sandbox
+  requires:
+  - name: notification-service-auth
+  - name: notification-service-db
+  - name: notification-service-html5-app-runtime
+  - name: srv-api-destination
+  provides:
+  - name: notification-service-api
+    properties:
+      srv-url: ${default-url}
+  parameters:
+    buildpack: sap_java_buildpack_jakarta
+    health-check-http-endpoint: /actuator/health/readiness
+    health-check-type: http
+  build-parameters:
+    build-result: target/*-exec.jar
+    builder: custom
+    commands:
+    - mvn clean package -DskipTests=true --batch-mode
+
+- name: notification-service-db-deployer
+  type: hdb
+  path: db
+  requires:
+  - name: notification-service-db
+  - name: notification-service-html5-app-runtime
+  parameters:
+    buildpack: nodejs_buildpack
+  build-parameters:
+    builder: custom
+    commands:
+    - npm run build
+    
+- name: notification-service-destination-content
+  type: com.sap.application.content
+  requires:
+  - name: notification-service-destination-service
+    parameters:
+      content-target: true
+  - name: notification-service_html_repo_host
+    parameters:
+      service-key:
+        name: notification-service_html_repo_host-key
+  - name: notification-service-auth
+    parameters:
+      service-key:
+        name: notification-service-auth-key
+  - name: notification-service-api
+  - name: srv-api-destination
+  - name: notification-service-html5-app-runtime
+  parameters:
+    content:
+      instance:
+        destinations:
+        - Authentication: OAuth2UserTokenExchange
+          Name: notification-service_html_repo_host
+          ServiceInstanceName: notification-service-html5-app-host-service
+          ServiceKeyName: notification-service_html_repo_host-key
+          sap.cloud.service: notification-service
+        - Authentication: OAuth2UserTokenExchange
+          Name: notification-service_auth
+          ServiceInstanceName: notification-service-auth
+          ServiceKeyName: notification-service-auth-key
+          sap.cloud.service: notification-service
+        - Authentication: OAuth2UserTokenExchange
+          HTML5.DynamicDestination: true
+          Name: notification-service-api
+          ServiceInstanceName: notification-service-auth
+          ServiceKeyName: notification-service-auth-key
+          URL: ~{notification-service-api/srv-url}
+          sap.cloud.service: notification-service
+        existing_destinations_policy: update
+  build-parameters:
+    no-source: true
+- name: notificationservice
+  type: html5
+  path: app/notificationservice
+  build-parameters:
+    artifacts:
+    - notificationservice.zip
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    - npx bestzip notificationservice.zip dist/*
+    supported-platforms: []
+- name: notification-service-app-content
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: notification-service-html5-app-runtime
+  - name: notification-service_html_repo_host
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: resources
+    requires:
+    - artifacts:
+      - notificationservice.zip
+      name: notificationservice
+      target-path: resources/
+resources:
+#既存HDIコンテナにデプロイ
+# - name: notification-service-db
+#   type: org.cloudfoundry.existing-service
+#   parameters:
+#     service-name: notification-db
+
+#HDIコンテナ新規生成
+- name: notification-service-db
+  type: com.sap.xs.hdi-container
+  parameters:
+    service: hana
+    service-plan: hdi-shared
+    service-name: notification-test-db
+
+- name: notification-service-auth
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      tenant-mode: dedicated
+      xsappname: notification-service-${space}
+    path: ./xs-security.json
+    service: xsuaa
+    service-name: notification-service-auth
+    service-plan: application
+  properties:
+    service-key:
+      name: notification-service-auth-key
+- name: notification-service-destination-service
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      HTML5Runtime_enabled: true
+      init_data:
+        instance:
+          destinations:
+          - Authentication: NoAuthentication
+            Name: ui5
+            ProxyType: Internet
+            Type: HTTP
+            URL: https://ui5.sap.com
+          existing_destinations_policy: update
+      version: 1.0.0
+    service: destination
+    service-name: notification-service-destination-service
+    service-plan: lite
+  requires:
+  - name: notification-service-api
+- name: notification-service_html_repo_host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-name: notification-service-html5-app-host-service
+    service-plan: app-host
+- name: notification-service-html5-app-runtime
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-plan: app-runtime
+- name: srv-api-destination
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      HTML5Runtime_enabled: false
+      init_data:
+        instance:
+          destinations:
+          - Authentication: NoAuthentication
+            Name: ui5
+            ProxyType: Internet
+            Type: HTTP
+            URL: https://ui5.sap.com
+          existing_destinations_policy: update
+    service: destination
+    service-plan: lite
+parameters:
+  deploy_mode: html5-repo
+  enable-parallel-deployments: true

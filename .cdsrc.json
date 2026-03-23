@@ -1,0 +1,14 @@
+{
+  "cdsc": {
+    "draftMessages": true
+  },
+  "requires": {
+    "[production]": {
+      "auth": "xsuaa"
+    },
+    "db": "sqlite",
+    "connectivity": true,
+    "destinations": true,
+    "html5-runtime": true
+  }
+}

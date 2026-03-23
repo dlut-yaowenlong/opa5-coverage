@@ -1,0 +1,232 @@
+{
+  "_version": "1.76.0",
+  "sap.app": {
+    "id": "notificationservice",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:lrop",
+      "version": "1.18.6",
+      "toolsId": "7743de04-a69d-47a3-bab1-6a6779897876"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/odata/v4/notification-service/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "odataVersion": "4.0"
+        }
+      }
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "NotificationService-display": {
+          "semanticObject": "NotificationService",
+          "action": "display",
+          "title": "{{NotificationService-display.flpTitle}}",
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          }
+        }
+      },
+      "outbounds": {
+        "sourcepage-display": {
+          "semanticObject": "sourcepage",
+          "action": "display"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.140.0",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.fe.templates": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "notificationservice.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      },
+      "@i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "uri": "i18n/i18n.properties"
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "ext/style/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {},
+      "routes": [
+        {
+          "pattern": ":?query:",
+          "name": "NT_V2_NOTIFICATION_KANRIList",
+          "target": "NT_V2_NOTIFICATION_KANRIList"
+        },
+        {
+         "pattern": "NT_V2_NOTIFICATION_KANRI({key}):?query:",
+          "name": "NT_V2_NOTIFICATION_KANRIObjectPage",
+          "target": "NT_V2_NOTIFICATION_KANRIObjectPage"
+        }
+      ],
+      "targets": {
+        "NT_V2_NOTIFICATION_KANRIList": {
+          "type": "Component",
+          "id": "NT_V2_NOTIFICATION_KANRIList",
+          "name": "sap.fe.templates.ListReport",
+          "options": {
+            "settings": {
+              "contextPath": "/NT_V2_NOTIFICATION_KANRI",
+              "variantManagement": "Page",
+              "navigation": {
+                "NT_V2_NOTIFICATION_KANRI": {
+                  "detail": {
+                    "route": "NT_V2_NOTIFICATION_KANRIObjectPage"
+                  }
+                }
+              },
+              "controlConfiguration": {
+                "@com.sap.vocabularies.UI.v1.LineItem": {
+                  "tableSettings": {
+                    "type": "ResponsiveTable"
+                  },
+                  "columns": {
+                    "DataField::CASE_NO_STR": {
+                      "width": "160px"
+                    },
+                    "DataField::TYPE_CODE": {
+                      "width": "220px"
+                    },
+                    "DataField::MESSAGE": {
+                      "width": "320px"
+                    },
+                    "DataField::STATUS_CODE": {
+                      "width": "160px"
+                    },
+                    "DataField::NOTIFICATION_AT": {
+                      "width": "160px"
+                    },
+                    "DataField::STATUS_MODIFIED_AT": {
+                      "width": "160px"
+                    },
+                    "DataField::UPDATED_USER_NAME": {
+                      "width": "220px"
+                    },
+                    "DataField::UPDATED_USER_ID": {
+                      "width": "220px"
+                    },
+                    "DataField::ascSTATUS_CODE::NAME": {
+                      "width": "180px"
+                    },
+                    "DataField::ascNOTIFICATION_CODE::NAME": {
+                      "width": "180px"
+                    }
+                  }
+                }
+              },
+              "defaultTemplateAnnotationPath": "com.sap.vocabularies.UI.v1.SelectionPresentationVariant#table"
+            }
+          }
+        },
+        "NT_V2_NOTIFICATION_KANRIObjectPage": {
+          "type": "Component",
+          "id": "NT_V2_NOTIFICATION_KANRIObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "contextPath": "/NT_V2_NOTIFICATION_KANRI",
+              "keepAlive": false,
+              "navigation": {},
+              "controlConfiguration": {
+                "NT_V2_NOTIFICATION_DETAIL/@com.sap.vocabularies.UI.v1.LineItem#_": {
+                  "tableSettings": {
+                    "type": "ResponsiveTable"
+                  },
+                  "columns": {
+                    "DataField::SCREEN_NAME": {
+                      "width": "240px"
+                    },
+                    "DataField::SCREEN_KEY": {
+                      "width": "240px"
+                    },
+                    "DataField::CONTEXT": {
+                      "width": "400px"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "extends": {
+      "extensions": {
+        "sap.ui.controllerExtensions": {
+          "sap.fe.templates.ListReport.ListReportController": {
+            "controllerName": "notificationservice.ext.controller.ListreportExt"
+          },
+          "sap.fe.templates.ObjectPage.ObjectPageController": {
+            "controllerName": "notificationservice.ext.controller.ObjectExt"
+          }
+        }
+      }
+    }
+  },
+  "sap.fiori": {
+    "registrationIds": [],
+    "archeType": "transactional"
+  },
+  "sap.cloud": {
+    "public": true,
+    "service": "notification-service"
+  }
+}
