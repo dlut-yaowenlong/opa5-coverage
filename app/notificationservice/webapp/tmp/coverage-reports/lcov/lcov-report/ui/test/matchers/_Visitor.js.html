@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">16.66% </span>
+                <span class="strong">83.33% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>2/12</span>
+                <span class='fraction'>10/12</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">80% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/10</span>
+                <span class='fraction'>8/10</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/2</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">16.66% </span>
+                <span class="strong">83.33% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>2/12</span>
+                <span class='fraction'>10/12</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -121,26 +121,26 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22x</span>
+<span class="cline-any cline-yes">22x</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22x</span>
+<span class="cline-any cline-yes">386x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">384x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -161,27 +161,27 @@ sap.ui.define([
 		// oControl or one of its ancestors must satisfy a condition
 		// fnMatch=condition; gets 1 arguments: current control
 		// bDirect=false; only direct parent or go up the entire tree
-		isMatching: <span class="fstat-no" title="function not covered" >fu</span>nction (oControl, fnMatch, bDirect) {
-<span class="cstat-no" title="statement not covered" >			if (fnMatch(oControl)) {</span>
+		isMatching: function (oControl, fnMatch, bDirect) {
+			<span class="missing-if-branch" title="if path not taken" >I</span>if (fnMatch(oControl)) {
 <span class="cstat-no" title="statement not covered" >				return true;</span>
 			}
 &nbsp;
 &nbsp;
-			var oParent = <span class="cstat-no" title="statement not covered" >oControl.getParent();</span>
-<span class="cstat-no" title="statement not covered" >			if (bDirect) {</span>
+			var oParent = oControl.getParent();
+			<span class="missing-if-branch" title="if path not taken" >I</span>if (bDirect) {
 <span class="cstat-no" title="statement not covered" >				return fnMatch(oParent);</span>
 			}
 &nbsp;
-<span class="cstat-no" title="statement not covered" >			while (oParent) {</span>
-<span class="cstat-no" title="statement not covered" >				if (fnMatch(oParent)) {</span>
-<span class="cstat-no" title="statement not covered" >					return true;</span>
+			while (oParent) {
+				if (fnMatch(oParent)) {
+					return true;
 				}
-<span class="cstat-no" title="statement not covered" >				oParent = (oParent.isA("sap.ui.core.UIComponent")</span>
+				oParent = (oParent.isA("sap.ui.core.UIComponent")
 					&amp;&amp;  !this._isInStaticArea(oControl.getDomRef()))
 					? oParent.oContainer : oParent.getParent();
 			}
 &nbsp;
-<span class="cstat-no" title="statement not covered" >			return false;</span>
+			return false;
 		}
 	});
 &nbsp;
@@ -193,7 +193,7 @@ sap.ui.define([
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-03-19T07:27:23.597Z
+                at 2026-03-23T05:17:07.145Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

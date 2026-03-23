@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">25% </span>
+                <span class="strong">81.25% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>4/16</span>
+                <span class='fraction'>13/16</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">58.33% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/12</span>
+                <span class='fraction'>7/12</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">25% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/4</span>
+                <span class='fraction'>4/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">25% </span>
+                <span class="strong">81.25% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>4/16</span>
+                <span class='fraction'>13/16</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -155,26 +155,26 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">22x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22x</span>
+<span class="cline-any cline-yes">408x</span>
+<span class="cline-any cline-yes">22x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">386x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">386x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">22x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">22x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -212,27 +212,27 @@ sap.ui.define([
 	 * @since 1.27
 	 */
 &nbsp;
-	return <span class="fstat-no" title="function not covered" >fu</span>nction (vAncestor, bDirect) {
-<span class="cstat-no" title="statement not covered" >		return <span class="fstat-no" title="function not covered" >fu</span>nction (oControl) {</span>
-<span class="cstat-no" title="statement not covered" >			if (!vAncestor) {</span>
+	return function (vAncestor, bDirect) {
+		return function (oControl) {
+			<span class="missing-if-branch" title="if path not taken" >I</span>if (!vAncestor) {
 <span class="cstat-no" title="statement not covered" >				oLogger.debug("No ancestor was defined so no controls will be filtered.");</span>
 <span class="cstat-no" title="statement not covered" >				return true;</span>
 			}
 &nbsp;
-			var bResult = <span class="cstat-no" title="statement not covered" >oVisitor.isMatching(oControl, <span class="fstat-no" title="function not covered" >fu</span>nction (oControlAncestor) {</span>
-<span class="cstat-no" title="statement not covered" >				if (oControlAncestor === oControl) {</span>
-<span class="cstat-no" title="statement not covered" >					return false;</span>
+			var bResult = oVisitor.isMatching(oControl, function (oControlAncestor) {
+				if (oControlAncestor === oControl) {
+					return false;
 				}
-<span class="cstat-no" title="statement not covered" >				if (typeof vAncestor === "string") {</span>
+				<span class="missing-if-branch" title="if path not taken" >I</span>if (typeof vAncestor === "string") {
 <span class="cstat-no" title="statement not covered" >					return oControlAncestor &amp;&amp; oControlAncestor.getId() === vAncestor;</span>
 				}
-<span class="cstat-no" title="statement not covered" >				return oControlAncestor === vAncestor;</span>
+				return oControlAncestor === vAncestor;
 			}, bDirect);
 &nbsp;
-<span class="cstat-no" title="statement not covered" >			oLogger.debug("Control '" + oControl + (bResult ? "' has " : "' does not have ") +</span>
-				(bDirect ? "direct " : "") + "ancestor '" + vAncestor);
+			oLogger.debug("Control '" + oControl + (bResult ? "' has " : "' does not have ") +
+				(bDirect ? <span class="branch-0 cbranch-no" title="branch not covered" >"direct " </span>: "") + "ancestor '" + vAncestor);
 &nbsp;
-<span class="cstat-no" title="statement not covered" >			return bResult;</span>
+			return bResult;
 		};
 	};
 &nbsp;
@@ -244,7 +244,7 @@ sap.ui.define([
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-03-19T07:27:23.597Z
+                at 2026-03-23T05:17:07.145Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>
